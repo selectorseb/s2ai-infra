@@ -1,0 +1,32 @@
+[
+    {
+        "type": "function",
+        "function": {
+            "name": "get_kpi_alert_status",
+            "description": "Function to retrieve kpi alert state status\n\n    Parameters:\n    - kpi_name (str): The kpi name, e.g., 'bist' or 'pv'. Default is 'all'.\n    - alert_state (str): The alert state, e.g., 'firing' or 'resolved'. Default is 'firing'.\n    - priority (str): The priority, e.g., 'P1' or 'P2'. Default is 'P1'.\n    - time (str): The time range, e.g., 'last 1 day' or 'last 2 days'. Default is 'last 1 day'.\n\n    Returns:\n    - str: Returns the state of the kpi alert status or an error message.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "kpi_name": {
+                        "type": "string",
+                        "default": "all"
+                    },
+                    "alert_state": {
+                        "type": "string",
+                        "default": "firing"
+                    },
+                    "priority": {
+                        "type": "string",
+                        "default": "P1"
+                    },
+                    "time": {
+                        "type": "string",
+                        "default": "last 7 day"
+                    }
+                },
+                "required": []
+            },
+            "returns": "string"
+        }
+    }
+]
