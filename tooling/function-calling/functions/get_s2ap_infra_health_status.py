@@ -3,7 +3,7 @@ import requests
 from time import strftime, localtime
 
 
-def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', s2ap_infra_health: str = 'violating', time: str = "last 1 day") -> str:
+def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', s2ap_infra_health: str = 'violating', time: str = "last 30 min") -> str:
     """
     Function to s2ap infra health status
 
@@ -11,7 +11,7 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', s2ap_i
     - role (str): The role, e.g., 'prod', 'staging' or 'poc'. Default is 'prod'.
     - s2_inst (str): The instance name.
     - s2ap_infra_health (str): The s2ap infra health state, e.g., 'violating' or 'unhealthy' when value is '2' else 'healthy' when value is '1'. Default is 'violating'.
-    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 1 day'.
+    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.
 
     Returns:
     - str: Returns the state of the s2ap infra health status or an error message.
@@ -37,7 +37,7 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', s2ap_i
 
     query_to_run = query_to_run + ' for ' + time 
 
-    # print(query_to_run)
+    print(query_to_run)
     headers = dict()
     headers["Authorization"] = "Bearer " + api_key
     headers["Content-Type"] = "application/json"

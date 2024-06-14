@@ -37,6 +37,7 @@ def get_kpi_alert_status(kpi_name: str = 'all', alert_state: str = 'firing', pri
     
     query_to_run = query_to_run + ' for ' + time 
 
+    print(query_to_run)
     headers = dict()
     headers["Authorization"] = "Bearer " + api_key
     headers["Content-Type"] = "application/json"
