@@ -28,5 +28,35 @@
             },
             "returns": "string"
         }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_s2ap_infra_health_status",
+            "description": "Function to s2ap infra health status\n\n    Parameters:\n    - role (str): The role, e.g., 'prod', 'staging' or 'poc'. Default is 'prod'.\n    - s2_inst (str): The instance name.\n    - s2ap_infra_health (str): The s2ap infra health state, e.g., 'violating' or 'unhealthy' when value is '2' else 'healthy' when value is '1'. Default is 'violating'.\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 1 day'.\n\n    Returns:\n    - str: Returns the state of the s2ap infra health status or an error message.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "type": "string",
+                        "default": "all"
+                    },
+                    "s2_inst": {
+                        "type": "string",
+                        "default": "all"
+                    },
+                    "s2ap_infra_health": {
+                        "type": "string",
+                        "default": "violating"
+                    },
+                    "time": {
+                        "type": "string",
+                        "default": "last 1 day"
+                    }
+                },
+                "required": []
+            },
+            "returns": "string"
+        }
     }
 ]
