@@ -7,7 +7,7 @@
      },
      {
         "role":"user",
-        "content":"what is the s2ap infra health status?\n\n"
+        "content":"what is the s2ap infra health status?\n"
      },
      {
         "role":"assistant",
@@ -19,7 +19,7 @@
   "conversations":[
      {
         "role":"user",
-        "content":"what is the s2ap infra health status?\n\n"
+        "content":"what is the s2ap infra health status?\n"
      },
      {
         "role":"function_call",
@@ -39,7 +39,7 @@
   "conversations":[
      {
         "role":"user",
-        "content":"what is the s2ap infra health status?\n\n"
+        "content":"what is the s2ap infra health status?\n"
      },
      {
         "role":"function_call",
