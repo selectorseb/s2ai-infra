@@ -23,7 +23,7 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', time: 
     query_to_run = query_to_run + 'role=.*, '
     query_to_run = query_to_run + 's2ap_infra_health>=1, '
 
-    query_to_run = query_to_run + ' for ' + time 
+    query_to_run = query_to_run + ' for ' + time
 
     print(query_to_run)
     headers = dict()
@@ -36,7 +36,7 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', time: 
     response = requests.post(selector_url, headers=headers, json=json_data)
     # Decode json response
     result = json.loads(response.text)
-    
+
     if len(result['data']) == 0:
         return "No result returned."
     output = "Following s2ap infra health status reported: \n"
@@ -56,6 +56,7 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', time: 
             entry = entry + " health:violating"
         entry = entry + " \n"
         output = output + entry
+    output = output + "\nSummarize the following output in 100 words:\n\n"
     return output
 
 # Test function
