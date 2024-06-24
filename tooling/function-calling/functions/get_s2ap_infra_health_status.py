@@ -56,7 +56,6 @@ def get_s2ap_infra_health_status(role: str = 'all', s2_inst: str = 'all', time: 
             entry = entry + " health:violating"
         entry = entry + " \n"
         output = output + entry
-    output = output + "\nSummarize the following output in 100 words:\n\n"
     return output
 
 # Test function

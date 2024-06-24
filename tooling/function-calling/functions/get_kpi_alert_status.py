@@ -65,7 +65,6 @@ def get_kpi_alert_status(kpi_name: str = 'all', alert_state: str = 'firing', pri
 
         kpi_result = kpi_result + " status:" + item['status'] + " starttime:"+ strftime('%Y-%m-%d %H:%M:%S', localtime(item['starttime'])) + " alertname:" + item['alertname'] +" \n"
         output = output + kpi_result
-    output = output + "\nSummarize the following output in 100 words:\n\n"
     return output
 
 # Test function
