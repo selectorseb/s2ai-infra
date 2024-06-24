@@ -56,7 +56,7 @@ def pretty_print_conversation(messages):
             print(colored(f"{message['role']}: {message['content']}\n", role_to_color[message["role"]]))
 
 def predict(user_input, max_length, top_p, temperature, history=[]):
-    
+
     history.append({"role": "user", "content": user_input})
 
     conversation = [
@@ -64,7 +64,7 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
             "role": "function_metadata",
             "content": json.dumps(tools, indent=4)
         }
-    ] 
+    ]
     conversation.extend(history)
     try:
         chat_response = client.chat.completions.create(
@@ -85,14 +85,14 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
         except json.JSONDecodeError as e:
             if not isinstance(completion_text, str):
                 completion_text = json.dumps(completion_text, indent=4)
-        
+
         if isinstance(function_call_json, dict) and function_call_json.get("name") is not None:
             history.append({"role": "function_call", "content": json.dumps(function_call_json, indent=4)})
             results = execute_function_call(function_call_json, functions)
             if not isinstance(results, str):
                 results = json.dumps(results, indent=4)
             history.append({"role": "function_response", "content": results})
-            history.append({"role": "user", "content": "Summarize the following output in 100 words: \n" + results})
+            #history.append({"role": "user", "content": "Summarize the following output in 100 words: \n" + results})
             response = client.chat.completions.create(
                 model=model,
                 messages=history,
@@ -103,7 +103,7 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
             completion_text = response.choices[0].message.content
     except Exception as e:
         completion_text = f"Error in generating response from the server: {e}"
-    
+
     history.append({"role": "assistant", "content": completion_text})
     filer_messages = []
     i = 0
@@ -112,7 +112,7 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
             filer_messages.append(history[i]["content"])
             i = i + 1
         elif history[i]["role"] == "function_call":
-            i = i + 3
+            i = i + 2
         else:
             i = i + 1
     messages = [(filer_messages[i], filer_messages[i+1]) for i in range(0, len(filer_messages)-1, 2)]
@@ -140,7 +140,7 @@ with gr.Blocks() as demo:
             max_length = gr.Slider(0, 8192, value=2048, step=1.0, label="Maximum length", interactive=True)
             top_p = gr.Slider(0, 1, value=0.8, step=0.01, label="Top P", interactive=True)
             temperature = gr.Slider(0.01, 1, value=0.01, step=0.01, label="Temperature", interactive=True)
-        
+
     # Define the interaction logic
     send_button.click(predict, inputs=[user_input, max_length, top_p, temperature, chatbot_history], outputs=[chatbox, chatbot_history])
     user_input.submit(predict, inputs=[user_input, max_length, top_p, temperature, chatbot_history], outputs=[chatbox, chatbot_history])
@@ -151,5 +151,5 @@ with gr.Blocks() as demo:
 demo.queue().launch(
     debug=True,
     server_name="0.0.0.0",
-    server_port=3000, 
+    server_port=3000,
 )
