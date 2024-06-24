@@ -1,0 +1,65 @@
+
+{
+  "conversations":[
+     {
+        "role":"function_metadata",
+        "content":"[\n    {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"get_s2ap_infra_health_status\",\n            \"description\": \"Function to get status of s2ap infra health\\n\\n    Parameters:\\n    - role (str): The role, e.g., \\'prod\\', \\'staging\\' or \\'poc\\'.\\n    - s2_inst (str): The instance name.\\n    - time (str): The time range, e.g., \\'last 1 day\\', \\'last 30 minutes\\' or \\'last 2 days\\'. Default is \\'last 30 min\\'.\\n\\n    Returns:\\n    - str: Returns the state of the s2ap infra health status or an error message.\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"role\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"s2_inst\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"time\": {\n                        \"type\": \"string\",\n                        \"default\": \"last 30 min\"\n                    }\n                },\n                \"required\": []\n            },\n            \"returns\": \"string\"\n        }\n    },\n    {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"get_kpi_alert_status\",\n            \"description\": \"Function to retrieve kpi alert state status\\n\\n    Parameters:\\n    - kpi_name (str): The kpi name, e.g., \\'bist\\' or \\'pv\\'. Default is \\'all\\'.\\n    - alert_state (str): The alert state, e.g., \\'firing\\' or \\'resolved\\'. Default is \\'firing\\'.\\n    - priority (str): The priority, e.g., \\'P1\\' or \\'P2\\'. Default is \\'P1\\'.\\n    - time (str): The time range, e.g., \\'last 1 day\\' or \\'last 2 days\\'. Default is \\'last 1 day\\'.\\n\\n    Returns:\\n    - str: Returns the state of the kpi alert status or an error message.\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"kpi_name\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"alert_state\": {\n                        \"type\": \"string\",\n                        \"default\": \"firing\"\n                    },\n                    \"priority\": {\n                        \"type\": \"string\",\n                        \"default\": \"P1\"\n                    },\n                    \"time\": {\n                        \"type\": \"string\",\n                        \"default\": \"last 7 day\"\n                    }\n                },\n                \"required\": []\n            },\n            \"returns\": \"string\"\n        }\n    },\n    {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"get_s2ap_infra_instance_kpi_status\",\n            \"description\": \"Function to get status of s2ap infra instance kpi state\\n\\n    Parameters:\\n    - role (str): The role, e.g., \\'prod\\', \\'staging\\' or \\'poc\\'.\\n    - s2_inst (str): The instance name.\\n    - kpi_name (str): The kpi name, e.g., \\'bist\\' or \\'pv\\'. Default is \\'all\\'.\\n    - time (str): The time range, e.g., \\'last 1 day\\', \\'last 30 minutes\\' or \\'last 2 days\\'. Default is \\'last 30 min\\'.\\n\\n    Returns:\\n    - str: Returns status of s2ap infra instance kpi state.\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"role\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"s2_inst\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"kpi_name\": {\n                        \"type\": \"string\",\n                        \"default\": \"all\"\n                    },\n                    \"time\": {\n                        \"type\": \"string\",\n                        \"default\": \"last 30 min\"\n                    }\n                },\n                \"required\": []\n            },\n            \"returns\": \"string\"\n        }\n    }\n]"
+     },
+     {
+        "role":"user",
+        "content":"what is the s2ap infra health status?\n\n"
+     },
+     {
+        "role":"assistant",
+        "content":"{\n    \"name\": \"get_s2ap_infra_health_status\",\n    \"arguments\": {\n        \"role\": \"all\",\n        \"s2_inst\": \"all\",\n        \"time\": \"last 30 min\"\n    }\n}"
+     }
+  ]
+}
+{
+  "conversations":[
+     {
+        "role":"user",
+        "content":"what is the s2ap infra health status?\n\n"
+     },
+     {
+        "role":"function_call",
+        "content":"{\n    \"name\": \"get_s2ap_infra_health_status\",\n    \"arguments\": {\n        \"role\": \"all\",\n        \"s2_inst\": \"all\",\n        \"time\": \"last 30 min\"\n    }\n}"
+     },
+     {
+        "role":"function_response",
+        "content":"Following s2ap infra health status reported: \n - instance:att role:poc health:violating \n - instance:bloomberg role:poc health:violating \n - instance:bloomberg-poc role:poc health:good \n - instance:chartermobility-poc role:poc health:good \n - instance:cirion-poc role:poc health:good \n - instance:dell role:poc health:good \n - instance:jnj-poc role:poc health:violating \n - instance:masergy-poc role:poc health:good \n - instance:metronet-poc role:poc health:good \n - instance:tch role:poc health:good \n - instance:alkira-prod role:prod health:good \n - instance:bellcanada-gke role:prod health:good \n - instance:childrens-prod role:prod health:good \n - instance:comcast-dc-va role:prod health:good \n - instance:comcast-linkit-va role:prod health:good \n - instance:cyxtera role:prod health:good \n - instance:everstream-prod role:prod health:good \n - instance:fusion-prod role:prod health:good \n - instance:godaddy-prod role:prod health:good \n - instance:gtt-prod role:prod health:good \n - instance:heatmap role:prod health:good \n - instance:heatmap-backbone-prod role:prod health:good \n - instance:heatmap-kafka role:prod health:good \n - instance:linx-prod role:prod health:good \n - instance:lumen-prod role:prod health:good \n - instance:mlb-angels role:prod health:good \n - instance:mlb-prod role:prod health:good \n - instance:mlb-reds role:prod health:good \n - instance:nbc-onprem role:prod health:good \n - instance:s2m role:prod health:good \n - instance:seaborn-prod role:prod health:good \n - instance:tracfone role:prod health:good \n - instance:alkira role:staging health:violating \n - instance:everstream-staging role:staging health:violating \n - instance:godaddy-staging role:staging health:good \n - instance:gtt-dev role:staging health:violating \n - instance:heatmap-backbone1 role:staging health:violating \n - instance:linx-onprem role:staging health:good \n - instance:lumen-dev role:staging health:good \n - instance:mlb-staging role:staging health:good \n - instance:seaborn-staging role:staging health:good \n\nSummarize the following output in 100 words:\n\n"
+     },
+     {
+        "role":"assistant",
+        "content":"Prod unhealthy:\n- None\n\nStaging unhealthy:\n- alkira\n- everstream-staging\n- gtt-dev\n- heatmap-backbone1\n\nPoc unhealthy:\n- att\n- bloomberg\n- jnj-poc"
+     }
+  ]
+}
+{
+  "conversations":[
+     {
+        "role":"user",
+        "content":"what is the s2ap infra health status?\n\n"
+     },
+     {
+        "role":"function_call",
+        "content":"{\n    \"name\": \"get_s2ap_infra_health_status\",\n    \"arguments\": {\n        \"role\": \"all\",\n        \"s2_inst\": \"all\",\n        \"time\": \"last 30 min\"\n    }\n}"
+     },
+     {
+        "role":"function_response",
+        "content":"Following s2ap infra health status reported: \n - instance:att role:poc health:violating \n - instance:bloomberg role:poc health:violating \n - instance:bloomberg-poc role:poc health:good \n - instance:chartermobility-poc role:poc health:good \n - instance:cirion-poc role:poc health:good \n - instance:dell role:poc health:good \n - instance:jnj-poc role:poc health:violating \n - instance:masergy-poc role:poc health:good \n - instance:metronet-poc role:poc health:good \n - instance:tch role:poc health:good \n - instance:alkira-prod role:prod health:good \n - instance:bellcanada-gke role:prod health:good \n - instance:childrens-prod role:prod health:good \n - instance:comcast-dc-va role:prod health:good \n - instance:comcast-linkit-va role:prod health:good \n - instance:cyxtera role:prod health:good \n - instance:everstream-prod role:prod health:good \n - instance:fusion-prod role:prod health:good \n - instance:godaddy-prod role:prod health:good \n - instance:gtt-prod role:prod health:good \n - instance:heatmap role:prod health:good \n - instance:heatmap-backbone-prod role:prod health:good \n - instance:heatmap-kafka role:prod health:good \n - instance:linx-prod role:prod health:good \n - instance:lumen-prod role:prod health:good \n - instance:mlb-angels role:prod health:good \n - instance:mlb-prod role:prod health:good \n - instance:mlb-reds role:prod health:good \n - instance:nbc-onprem role:prod health:good \n - instance:s2m role:prod health:good \n - instance:seaborn-prod role:prod health:good \n - instance:tracfone role:prod health:good \n - instance:alkira role:staging health:violating \n - instance:everstream-staging role:staging health:violating \n - instance:godaddy-staging role:staging health:good \n - instance:gtt-dev role:staging health:violating \n - instance:heatmap-backbone1 role:staging health:violating \n - instance:linx-onprem role:staging health:good \n - instance:lumen-dev role:staging health:good \n - instance:mlb-staging role:staging health:good \n - instance:seaborn-staging role:staging health:good \n\nSummarize the following output in 100 words:\n\n"
+     },
+     {
+        "role":"assistant",
+        "content":"Prod unhealthy:\n- None\n\nStaging unhealthy:\n- alkira\n- everstream-staging\n- gtt-dev\n- heatmap-backbone1\n\nPoc unhealthy:\n- att\n- bloomberg\n- jnj-poc"
+     },
+     {
+        "role":"user",
+        "content":"What is 1 + 1?"
+     },
+     {
+        "role":"assistant",
+        "content":"2"
+     }
+  ]
+}
