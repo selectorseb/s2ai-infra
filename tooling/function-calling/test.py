@@ -3,10 +3,26 @@ from openai import OpenAI
 
 model = "andy006/s2-oracle-trained"
 
+pingmesh = [
+    {
+        "phrase" : "packet loss seen by device d8 in arizone?",
+        "function": "get_pingmesh"
+    }
+]
+
 questions = [
-    "What is the s2ap infra health status?",
     "Who are you?",
-    "packet loss seen by device d8 in arizone?"
+    # Pingmesh
+    "packet loss seen by device d8 in arizone?",
+    "latency seen in arizons",
+    "jitter experienced by device d4",
+    # Circuits
+    "status of circuits provided by att", 
+    "show me status of circuits owned by lumen", 
+    # Topology
+    "layer2 connections from source device d43",
+    "show me bgp network around dnvr", 
+    "show me lldp connections to destination device d56"
 ]
 
 openai_api_key = "EMPTY"
@@ -45,8 +61,7 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
 
     return completion_text
 
-# main
-def main():
+def test_basic():
     max_length = 2048
     top_p = 0.95
     temperature = 0.01
@@ -57,5 +72,11 @@ def main():
         result = predict(question, max_length, top_p, temperature, history)
         print(f"Answer: {result}")
 
-if __name__=="__main__": 
-    main()
+    for q in pingmesh:
+        question = q['phrase']
+        function = q['function']
+        print(f"\n\nQuestion: {question}")
+    
+        result = predict(question, max_length, top_p, temperature, history)
+        print(f"Answer: {result}")
+        assert function in result

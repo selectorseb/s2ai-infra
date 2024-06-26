@@ -3,16 +3,16 @@ import requests
 from time import strftime, localtime
 
 
-def get_topology(topology_type: str = 'lldp', a_device: str = '', a_interface: str = '', z_device: str = '', z_interface: str = '', circuit_id: str = '', circuit_provider: str = '', time: str = "last 30 min") -> str:
+def get_topology(topology_type: str = 'lldp', source_device: str = '', source_interface: str = '', destination_device: str = '', destination_interface: str = '', circuit_id: str = '', circuit_provider: str = '', time: str = "last 30 min") -> str:
     """
     Function to get network topology
 
     Parameters:
     - topology_type (str): The type of the network topology, e.g., 'lldp', 'igp', 'bgp', 'vpn', 'static' or 'layer2'.
-    - a_device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device
-    - z_device (str): The ending device. This is the destination endpoint of the graph. Graph connections are to this device
-    - a_interface (str): The starting interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Source interface or port of the graph edge. Connections start from this interface or port
-    - z_interface (str): The end interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Destination interface or port of the graph edge. Connections end at this interface or port
+    - source_device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device
+    - destination_device (str): The ending device. This is the destination endpoint of the graph. Graph connections are to this device
+    - source_interface (str): The starting interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Source interface or port of the graph edge. Connections start from this interface or port
+    - destination_interface (str): The end interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Destination interface or port of the graph edge. Connections end at this interface or port
     - circuit_id (str): an alphanumeric number that uniquely identifies a circuit
     - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo'
     - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.
