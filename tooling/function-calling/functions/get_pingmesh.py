@@ -5,7 +5,8 @@ from time import strftime, localtime
 
 def get_pingmesh(agent: str = '', device: str = '', site: str = '', time: str = "last 30 min") -> str:
     """
-    Function to get pingmesh synthetic metrics like latency and packet loss
+    Function to get pingmesh synthetic metrics to get latency, packet loss, jitter, traceroute attributes of the 
+    the network
 
     Parameters:
     - agent (str): pingmesh agents which originate the ping packets. These are sources
