@@ -6,7 +6,7 @@ model = "andy006/s2-oracle-trained"
 questions = [
     "What is the s2ap infra health status?",
     "Who are you?",
-    "packet loss seen by device d8 in arizona?"
+    "packet loss seen by device d8 in arizone?"
 ]
 
 openai_api_key = "EMPTY"
