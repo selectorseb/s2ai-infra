@@ -2,6 +2,82 @@
     {
         "type": "function",
         "function": {
+            "name": "get_topology",
+            "description": "Function to get network topology\n\n    Parameters:\n    - topology_type (str): The type of the network topology, e.g., 'lldp', 'igp', 'bgp', 'vpn', 'static' or 'layer2'.\n    - source_device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device\n    - destination_device (str): The ending device. This is the destination endpoint of the graph. Graph connections are to this device\n    - source_interface (str): The starting interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Source interface or port of the graph edge. Connections start from this interface or port\n    - destination_interface (str): The end interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Destination interface or port of the graph edge. Connections end at this interface or port\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "topology_type": {
+                        "type": "string",
+                        "default": "lldp"
+                    },
+                    "source_device": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "source_interface": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "destination_device": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "destination_interface": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "circuit_id": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "circuit_provider": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "time": {
+                        "type": "string",
+                        "default": "last 30 min"
+                    }
+                },
+                "required": []
+            },
+            "returns": "string"
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_pingmesh",
+            "description": "Function to get pingmesh synthetic metrics to get latency, packet loss, jitter, traceroute attributes of the \n    the network\n\n    Parameters:\n    - agent (str): pingmesh agents which originate the ping packets. These are sources\n    - device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "agent": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "device": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "site": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "time": {
+                        "type": "string",
+                        "default": "last 30 min"
+                    }
+                },
+                "required": []
+            },
+            "returns": "string"
+        }
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "get_circuits",
             "description": "Function to get network topology\n\n    Parameters:\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo', 'aws', 'gcp'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi\n    - device: A network router. e.g - tr01.dnvr1, rs10101.sea1\n    - interface: A port on a device e.g et-0/0/1, Eth0/0/1, Eth0/0/2, Ethernet0/10/1\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
             "parameters": {
@@ -70,36 +146,6 @@
     {
         "type": "function",
         "function": {
-            "name": "get_pingmesh",
-            "description": "Function to get pingmesh synthetic metrics to get latency, packet loss, jitter, traceroute attributes of the \n    the network\n\n    Parameters:\n    - agent (str): pingmesh agents which originate the ping packets. These are sources\n    - device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "agent": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "device": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "site": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "time": {
-                        "type": "string",
-                        "default": "last 30 min"
-                    }
-                },
-                "required": []
-            },
-            "returns": "string"
-        }
-    },
-    {
-        "type": "function",
-        "function": {
             "name": "get_s2ap_infra_health_status",
             "description": "Function to get status of s2ap infra health\n\n    Parameters:\n    - role (str): The role, e.g., 'prod', 'staging' or 'poc'.\n    - s2_inst (str): The instance name.\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n\n    Returns:\n    - str: Returns the state of the s2ap infra health status or an error message.",
             "parameters": {
@@ -142,52 +188,6 @@
                     "kpi_name": {
                         "type": "string",
                         "default": "all"
-                    },
-                    "time": {
-                        "type": "string",
-                        "default": "last 30 min"
-                    }
-                },
-                "required": []
-            },
-            "returns": "string"
-        }
-    },
-    {
-        "type": "function",
-        "function": {
-            "name": "get_topology",
-            "description": "Function to get network topology\n\n    Parameters:\n    - topology_type (str): The type of the network topology, e.g., 'lldp', 'igp', 'bgp', 'vpn', 'static' or 'layer2'.\n    - source_device (str): The starting device. This is the source endpoint of the graph. Graph connections start from this device\n    - destination_device (str): The ending device. This is the destination endpoint of the graph. Graph connections are to this device\n    - source_interface (str): The starting interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Source interface or port of the graph edge. Connections start from this interface or port\n    - destination_interface (str): The end interface. e.g et-0/0/1, Eth0/0/1, Eth0/0/2 Destination interface or port of the graph edge. Connections end at this interface or port\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "topology_type": {
-                        "type": "string",
-                        "default": "lldp"
-                    },
-                    "source_device": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "source_interface": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "destination_device": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "destination_interface": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "circuit_id": {
-                        "type": "string",
-                        "default": ""
-                    },
-                    "circuit_provider": {
-                        "type": "string",
-                        "default": ""
                     },
                     "time": {
                         "type": "string",
