@@ -1,0 +1,36 @@
+[
+    {
+        "phrase" : "packet loss source device d8 in arizona?",
+        "function": "get_pingmesh",
+        "enabled": "1",
+        "filters": {
+            "device" : "d8",
+            "site": "arizona"
+        }
+    },
+    {
+        "phrase" : "latency seen in arizona",
+        "function": "get_pingmesh",
+        "enabled": "1",
+         "filters": {
+            "site": "arizona"
+         }
+    },
+    {
+        "phrase" : "jitter experienced by device d4",
+        "function": "get_pingmesh",
+        "enabled": "1",
+        "filters": {
+            "device": "d4"
+        }
+    },
+    {
+        "phrase" : "latency in site ari1 in the last 3 weeks",
+        "function": "get_pingmesh",
+        "enabled": "1",
+        "filters": {
+            "time": "last 3 weeks",
+            "site": "ari1"
+        }
+    }
+]

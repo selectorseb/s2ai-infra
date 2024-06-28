@@ -1,0 +1,28 @@
+[
+    {
+        "phrase" : "show devices connected to d8",
+        "function": "get_topology",
+        "enabled": "1",
+         "filters": {
+            "source_device": "d8"
+        }
+    },
+    {
+        "phrase" : "downstream devices connected to d8 Ethernet-9/91/1",
+        "function": "get_topology",
+        "enabled": "1",
+         "filters": {
+            "source_device": "d8",
+            "source_interface": "Ethernet-9/91/1"
+        }
+    },
+    {
+        "phrase" : "downstream devices connected to d8 Ethernet-9/91/1",
+        "function": "get_topology",
+        "enabled": "1",
+         "filters": {
+            "source_device": "d8",
+            "source_interface": "Ethernet-9/91/1"
+        }
+    }
+]
