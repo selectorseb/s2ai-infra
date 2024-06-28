@@ -1,0 +1,101 @@
+[
+    {
+        "phrase" : "circuit status",
+        "function": "get_circuit",
+        "enabled": "1"
+    },
+    {
+        "phrase" : "show me status of circuits owned by lumen",
+        "function": "get_circuit",
+        "enabled": "1",
+        "filters": {
+            "circuit_provider": "lumen"
+        }
+    },
+
+    {
+        "phrase" : "errors in circuits at device d3",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "device": "d3"
+        }
+    },
+    {
+        "phrase" : "status of all zayo circuits in atl",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "site": "atl",
+            "circuit_provider": "zayo"
+        }
+    }, 
+    {
+        "phrase" : "status of all circuits managed by att in atl over the last month",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "site": "atl",
+            "circuit_provider": "att", 
+            "time": "last 30 days"
+        }
+    },
+    {
+        "phrase" : "status of all circuits provided by lumen in seattle over the last 24 hours",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "site": "seattle",
+            "circuit_provider": "lumen", 
+            "time": "last 24 hours"
+        }
+    },
+    {
+        "phrase" : "status of all circuits provided by lumen in denver over the last 24 hours",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "site": "dnvr1",
+            "circuit_provider": "lumen", 
+            "time": "last 24 hours"
+        }
+    },
+    {
+        "phrase" : "status of all circuits at device rtr3 provided by lumen in denver over the last 24 hours",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "site": "dnvr1",
+            "circuit_provider": "lumen", 
+            "time": "last 24 hours",
+            "device": "rtr3"
+        }
+    },
+    {
+        "phrase" : "What's the status of circuits over Ethernet100* ports?",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "time": "last 30 min",
+            "interface": "Ethernet100*"
+        }
+    },
+    {
+        "phrase" : "For Eth100* circuits, which providers are in a warning or failing state in the last 48 hours",
+        "function": "get_circuit",
+        "enabled": "1",
+         "filters": {
+            "time": "last 48 hours",
+            "metric_state": "warning,failing",
+            "interface": "Eth100*"
+        }
+    },
+    {
+        "phrase" : "Are there any interface errors at nyc1?",
+        "function": "get_interfaces",
+        "enabled": "1",
+         "filters": {
+            "site": "nyc1"
+        }
+    }
+]

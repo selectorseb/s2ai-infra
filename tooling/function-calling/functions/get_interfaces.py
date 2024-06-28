@@ -3,9 +3,9 @@ import requests
 from time import strftime, localtime
 
 
-def get_circuits(circuit_id: str = '', circuit_provider: str = '', site: str = '', device: str = '', interface: str = '', time: str = "last 30 min") -> str:
+def get_interfaces(circuit_id: str = '', circuit_provider: str = '', site: str = '', device: str = '', interface: str = '', kpi: str = '', metric_state: str = '', time: str = "last 30 min") -> str:
     """
-    Function to get status of circuits
+    Function to get status of interfaces, ports
 
     Parameters:
     - circuit_id (str): an alphanumeric number that uniquely identifies a circuit
@@ -15,6 +15,7 @@ def get_circuits(circuit_id: str = '', circuit_provider: str = '', site: str = '
     - device: A network router. e.g - tr01.dnvr1, rs10101.sea1
     - interface: A port on a device e.g et-0/0/1, Eth0/0/1, Eth0/0/2, Ethernet0/10/1
     - metric_state: the failure threshold of the metric. e.g - warning, failed, errors, critical
+    - kpi: the key performance indicator for the health of the interface. e.g - utilization, errors, bandwidth, transmit, receive, discards, status, optical light levels, optics, dom power, voltage
 
     Returns:
     - str: Returns the state of network topology. How devices are connected to each other

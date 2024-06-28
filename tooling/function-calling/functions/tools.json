@@ -3,7 +3,7 @@
         "type": "function",
         "function": {
             "name": "get_circuits",
-            "description": "Function to get network topology\n\n    Parameters:\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo', 'aws', 'gcp'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi\n    - device: A network router. e.g - tr01.dnvr1, rs10101.sea1\n    - interface: A port on a device e.g et-0/0/1, Eth0/0/1, Eth0/0/2, Ethernet0/10/1\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
+            "description": "Function to get status of circuits\n\n    Parameters:\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo', 'aws', 'gcp'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi, seattle\n    - device: A network router. e.g - tr01.dnvr1, rs10101.sea1\n    - interface: A port on a device e.g et-0/0/1, Eth0/0/1, Eth0/0/2, Ethernet0/10/1\n    - metric_state: the failure threshold of the metric. e.g - warning, failed, errors, critical\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -24,6 +24,52 @@
                         "default": ""
                     },
                     "interface": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "time": {
+                        "type": "string",
+                        "default": "last 30 min"
+                    }
+                },
+                "required": []
+            },
+            "returns": "string"
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_interfaces",
+            "description": "Function to get status of interfaces, ports\n\n    Parameters:\n    - circuit_id (str): an alphanumeric number that uniquely identifies a circuit\n    - circuit_provider (str): the organization that provides circuit services, e.g 'att', 'lumen', 'zayo', 'aws', 'gcp'\n    - time (str): The time range, e.g., 'last 1 day', 'last 30 minutes' or 'last 2 days'. Default is 'last 30 min'.\n    - site: A datacenter site with all devices. e.g - dnvr1, ari1, bpwifi, seattle\n    - device: A network router. e.g - tr01.dnvr1, rs10101.sea1\n    - interface: A port on a device e.g et-0/0/1, Eth0/0/1, Eth0/0/2, Ethernet0/10/1\n    - metric_state: the failure threshold of the metric. e.g - warning, failed, errors, critical\n    - kpi: the key performance indicator for the health of the interface. e.g - utilization, errors, bandwidth, transmit, receive, discards, status, optical light levels, optics, dom power, voltage\n\n    Returns:\n    - str: Returns the state of network topology. How devices are connected to each other",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "circuit_id": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "circuit_provider": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "site": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "device": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "interface": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "kpi": {
+                        "type": "string",
+                        "default": ""
+                    },
+                    "metric_state": {
                         "type": "string",
                         "default": ""
                     },

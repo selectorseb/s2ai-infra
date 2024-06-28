@@ -1,0 +1,72 @@
+[
+    {
+        "phrase" : "status of ports in sea",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "seattle"
+        }
+    },
+    {
+        "phrase" : "status of ports",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min"
+        }
+    },
+    {
+        "phrase" : "status of ports with high utilization in arizona",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "ari1",
+            "kpi"  : "utilization"
+        }
+    },
+    {
+        "phrase" : "status of ports with high utilization in arizona on router rt43.1.1",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "ari1",
+            "kpi"  : "utilization",
+            "device": "rt43.1.1"
+        }
+    },
+    {
+        "phrase" : "status of ports with optics issues in arizona",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "ari1",
+            "kpi"  : "optics"
+        }
+    },
+    {
+        "phrase" : "status of Eth100* ports with high utilization in arizona on router rt43.1.1",
+        "function": "get_interfaces",
+        "enabled": "0",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "arizona",
+            "kpi"  : "utilization",
+            "device": "rt43.1.1",
+            "interface": "Eth100*"
+        }
+    },
+    {
+        "phrase" : "status of ports with optics issues in arizona",
+        "function": "get_interfaces",
+        "enabled": "1",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "ari1",
+            "kpi"  : "optics"
+        }
+    }
+]
