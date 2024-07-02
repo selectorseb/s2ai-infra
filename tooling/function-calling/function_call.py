@@ -67,6 +67,10 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
         {
             "role": "function_metadata",
             "content": json.dumps(tools, indent=4)
+        },
+        {
+            "role": "system",
+            "content": "You are a helpful assistant. Check if the user query is mapped to a function call. If its a function call then never guess the parameters, ask for clarification to user back, and only respond as a json with function name and arguments."
         }
     ]
     conversation.extend(history)
