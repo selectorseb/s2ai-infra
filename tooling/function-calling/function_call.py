@@ -8,6 +8,7 @@ import gradio as gr
 from function_utils import prepare_function_tools
 prepare_function_tools()
 
+demo_mode = False
 model = "andy006/s2-oracle-trained"
 
 openai_api_key = "EMPTY"
@@ -57,6 +58,9 @@ def pretty_print_conversation(messages):
 
 def predict(user_input, max_length, top_p, temperature, history=[]):
 
+    if demo_mode:
+        history = []
+
     history.append({"role": "user", "content": user_input})
 
     conversation = [
@@ -88,19 +92,22 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
 
         if isinstance(function_call_json, dict) and function_call_json.get("name") is not None:
             history.append({"role": "function_call", "content": json.dumps(function_call_json, indent=4)})
-            results = execute_function_call(function_call_json, functions)
-            if not isinstance(results, str):
-                results = json.dumps(results, indent=4)
-            history.append({"role": "function_response", "content": results})
-            #history.append({"role": "user", "content": "Summarize the following output in 100 words: \n" + results})
-            response = client.chat.completions.create(
-                model=model,
-                messages=history,
-                temperature=temperature,
-                max_tokens=max_length,
-                stream=False,
-            )
-            completion_text = response.choices[0].message.content
+            if demo_mode:
+                completion_text = json.dumps(function_call_json, indent=4)
+            else:
+                results = execute_function_call(function_call_json, functions)
+                if not isinstance(results, str):
+                    results = json.dumps(results, indent=4)
+                history.append({"role": "function_response", "content": results})
+                #history.append({"role": "user", "content": "Summarize the following output in 100 words: \n" + results})
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=history,
+                    temperature=temperature,
+                    max_tokens=max_length,
+                    stream=False,
+                )
+                completion_text = response.choices[0].message.content
     except Exception as e:
         completion_text = f"Error in generating response from the server: {e}"
 
@@ -111,8 +118,8 @@ def predict(user_input, max_length, top_p, temperature, history=[]):
         if history[i]["role"] == "user" or history[i]["role"] == "assistant":
             filer_messages.append(history[i]["content"])
             i = i + 1
-        elif history[i]["role"] == "function_call":
-            i = i + 2
+        # elif history[i]["role"] == "function_call":
+        #     i = i + 2
         else:
             i = i + 1
     messages = [(filer_messages[i], filer_messages[i+1]) for i in range(0, len(filer_messages)-1, 2)]
