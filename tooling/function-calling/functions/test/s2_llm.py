@@ -61,7 +61,11 @@ def execute_questions(questions):
 
         filter_status = True
         for f in filters:
-            if jresult['arguments'].get(f) != filters[f]:
+            if type(jresult['arguments'].get(f, [])) == list:
+                s1 = set(jresult['arguments'].get(f, []))
+                s2 = set(filters[f])
+                filter_status = (s1 == s2)
+            elif jresult['arguments'].get(f) != filters[f]:
                 filter_status = False
         
         return function_impute_status, filter_status

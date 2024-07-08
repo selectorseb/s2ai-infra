@@ -3,7 +3,7 @@ import requests
 from time import strftime, localtime
 
 
-def get_interfaces(circuit_id: str = '', circuit_provider: str = '', site: str = '', device: str = '', interface: str = '', kpi: str = '', metric_state: str = '', time: str = "last 30 min") -> str:
+def get_interfaces(circuit_id: str = '', circuit_provider: str = '', site: list = [], device: str = '', interface: str = '', kpi: list = [], metric_state: str = '', time: str = "last 30 min") -> str:
     """
     Function to get status of interfaces, ports
 

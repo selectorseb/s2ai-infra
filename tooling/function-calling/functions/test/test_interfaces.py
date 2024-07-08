@@ -99,7 +99,7 @@ def test_status_kpi_1():
             "function": "get_interfaces",
             "filters": {
                 "time" : "last 30 min",
-                "site" : "ari1,dnvr1",
+                "site" : ["ari1","dnvr1"],
                 "kpi"  : "utilization"
             }
         }
@@ -202,11 +202,42 @@ def test_status_kpi_optics():
         {
         "phrase" : "status of ports with optics issues in arizona",
         "function": "get_interfaces",
-        "enabled": "1",
         "filters": {
             "time" : "last 30 min",
             "site" : "ari1",
             "kpi"  : "optics"
+        }
+    }
+    ]
+    function, filter = s2_llm.execute_questions(data)   
+    assert function == True
+    assert filter == True 
+
+def test_errors():
+    data =  [
+        {
+        "phrase" : "Are there any interface errors at nyc1?",
+        "function": "get_interfaces",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "nyc1",
+            "kpi"  : "errors"
+        }
+    }
+    ]
+    function, filter = s2_llm.execute_questions(data)   
+    assert function == True
+    assert filter == True 
+
+def test_errors():
+    data =  [
+        {
+        "phrase" : "Are there any interface errors at nyc1?",
+        "function": "get_interfaces",
+        "filters": {
+            "time" : "last 30 min",
+            "site" : "nyc1",
+            "kpi"  : "errors"
         }
     }
     ]
